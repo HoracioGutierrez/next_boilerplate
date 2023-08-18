@@ -7,6 +7,11 @@ const nextConfig = {
     webpack: (config) => {
         config.plugins.push(new UnoCSS())
         return config
+    },
+    images : {
+        remotePatterns : [{
+            hostname : "lh3.googleusercontent.com"
+        }]
     }
 }
 
