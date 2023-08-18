@@ -1,5 +1,6 @@
 import './globals.css'
 import Header from '@/components/layout/Header'
+import CustomSessionProvider from '@/components/providers/CustomSessionProvider'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
@@ -18,10 +19,12 @@ export default function RootLayout({
   return (
     <html lang="en" className='dark' h-full>
       <body dark="text-white bg-slate-700" h-full flex flex-col>
-        <Header/>
-        <main p="2 md:4" grow>
-          {children}
-        </main>
+        <CustomSessionProvider>
+          <Header />
+          <main p="2 md:4" grow>
+            {children}
+          </main>
+        </CustomSessionProvider>
       </body>
     </html>
   )
