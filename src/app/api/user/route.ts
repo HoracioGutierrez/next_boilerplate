@@ -5,10 +5,8 @@ import { hash } from 'bcryptjs'
 export async function GET(request: Request) {
     const client = await clientPromise;
     const db = client.db();
-    /* const { searchParams } = new URL(request.url)
-    const email = searchParams.get('email') */
-    //comes from body.credentials
-    const { email } = await request.json()
+    const { searchParams } = new URL(request.url)
+    const email = searchParams.get('email')
 
     const user = await db.collection('users').findOne({ email })
 

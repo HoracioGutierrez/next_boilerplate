@@ -18,8 +18,18 @@ const authOptions: AuthOptions = {
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials) {
-                
-                console.log(credentials)
+
+                if (credentials && credentials.email) {
+                    try {
+                        const user = await fetch("http://localhost:3000/api/user?email=" + encodeURI(credentials.email))
+                        const userJson = await user.json()
+                        if (userJson.error) return null
+                        return userJson
+                    } catch (error) {
+                        console.log({ error })
+                        return null
+                    }
+                }
 
                 return null
             }
