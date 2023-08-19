@@ -7,7 +7,6 @@ import authOptions from "@/auth/options"
 export default async function Header() {
 
     const session = await getServerSession(authOptions)
-    console.log(session)
 
     return (
         <header flex justify="between" p="2 md:4">
