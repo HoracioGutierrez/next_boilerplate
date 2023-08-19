@@ -36,6 +36,9 @@ const authOptions: AuthOptions = {
         })
     ],
     adapter: MongoDBAdapter(clientPromise) as Adapter,
+    session : {
+        strategy: 'jwt',
+    }
 }
 
 export default authOptions;
