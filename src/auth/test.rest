@@ -1,0 +1,9 @@
+POST http://localhost:3000/api/auth/signin/credentials
+
+Content-Type: application/json
+
+{
+  "csrfToken": "053efe92686c07530f23b7994a3981e09d44663a0bf165a530e74f40fb9b785b",
+  "email" : "test@test.com",
+    "password" : "test"
+}

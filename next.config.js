@@ -12,6 +12,9 @@ const nextConfig = {
         remotePatterns : [{
             hostname : "lh3.googleusercontent.com"
         }]
+    },
+    experimental: {
+        serverActions : true
     }
 }
 

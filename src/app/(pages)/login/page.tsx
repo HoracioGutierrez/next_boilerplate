@@ -1,3 +1,5 @@
+"use client"
+import GoogleButton from "@/components/widgets/GoogleButton";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -28,6 +30,7 @@ export default function LoginPage() {
             >
               Sign in
             </button>
+            <GoogleButton text="Sign In with Google" />
           </div>
         </form>
 
@@ -43,6 +46,7 @@ export default function LoginPage() {
             reset password
           </Link>
         </p>
+
       </div>
     </div>
   )
