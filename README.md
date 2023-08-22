@@ -14,6 +14,9 @@ This is a [Next.js](https://nextjs.org/) boilerplate with [TypeScript](https://w
 - [x] Server Components
 - [x] NextAuth.js
 - [x] OAuth and Credentials Providers
+- [x] Google OAuth
+- [x] Tailwind Merge
+- [x] clsx (for conditional classes)
 
 ## Getting Started
 
