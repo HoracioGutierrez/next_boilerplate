@@ -8,13 +8,19 @@ const nextConfig = {
         config.plugins.push(new UnoCSS())
         return config
     },
-    images : {
-        remotePatterns : [{
-            hostname : "lh3.googleusercontent.com"
-        }]
+    images: {
+        remotePatterns: [
+            {
+                hostname: "lh3.googleusercontent.com"
+            },
+            {
+                hostname: "api.dicebear.com",
+            }
+        ],
+        dangerouslyAllowSVG: true,
     },
     experimental: {
-        serverActions : true
+        serverActions: true
     }
 }
 

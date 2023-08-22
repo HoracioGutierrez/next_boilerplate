@@ -8,6 +8,7 @@ export default async function Header() {
 
     const session = await getServerSession(authOptions)
 
+
     return (
         <header flex justify="between" p="2 md:4">
             <div flex items="center" gap="2 md:0" relative z-1>
@@ -28,8 +29,8 @@ export default async function Header() {
                         <Link href="/api/auth/signout">signout</Link>
                         <Link href="/profile">profile</Link>
                         <Image
-                            src={session.user.image as string}
-                            alt={session.user.name as string}
+                            src={session.user.image as string || "https://api.dicebear.com/6.x/initials/svg?seed=" + session.user.email}
+                            alt={session.user.name as string || session.user.email as string}
                             width={32}
                             height={32}
                             className="rounded-full"

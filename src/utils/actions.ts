@@ -2,12 +2,6 @@ export const handleSignupForm = async (formData: FormData) => {
     const name = formData.get('name')
     const email = formData.get('email')
     const password = formData.get('password')
-    const repassword = formData.get('repassword')
-
-    if (!name || !email || !password || !repassword) throw new Error('All fields are required')
-
-    if (password !== repassword) throw new Error('Passwords do not match')
-
     try {
 
         const request = await fetch("http://localhost:3000/api/user", {
