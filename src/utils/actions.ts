@@ -19,7 +19,6 @@ export const handleSignupForm = async (formData: FormData) => {
         return response
         
     } catch (error) {
-        console.log(error)
         throw new Error('Something else went wrong')
     }
 }

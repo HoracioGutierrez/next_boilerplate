@@ -27,7 +27,6 @@ export const handleSignupForm = async (data: { name: string, email: string, pass
         await handleSignupFormClient(formData)
         return { success: true }
     } catch (error) {
-        console.log({ error })
         return { success: false, errors: { server: 'Server error' } }
     }
 }

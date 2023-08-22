@@ -26,7 +26,6 @@ const authOptions: AuthOptions = {
                         if (userJson.error) return null
                         return userJson
                     } catch (error) {
-                        console.log({ error })
                         return null
                     }
                 }
