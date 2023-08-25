@@ -21,7 +21,7 @@ const authOptions: AuthOptions = {
 
                 if (credentials && credentials.email) {
                     try {
-                        const user = await fetch("http://localhost:3000/api/user?email=" + encodeURI(credentials.email))
+                        const user = await fetch(process.env.NEXTAUTH_URL as string + "/api/user?email=" + encodeURI(credentials.email))
                         const userJson = await user.json()
                         if (userJson.error) return null
                         return userJson
@@ -35,7 +35,7 @@ const authOptions: AuthOptions = {
         })
     ],
     adapter: MongoDBAdapter(clientPromise) as Adapter,
-    session : {
+    session: {
         strategy: 'jwt',
     }
 }
