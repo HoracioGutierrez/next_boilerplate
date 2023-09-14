@@ -19,7 +19,7 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
     const client = await clientPromise;
     const db = client.db();
-    const { email, password } = await request.json()
+    const { email, password, name, username } = await request.json()
 
     if (!email || !password) return NextResponse.json({ error: 'Email and password required' }, { status: 400 })
 
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
 
     try {
 
-        const newUser = await db.collection('users').insertOne({ email, password: hashedPassword })
+        const newUser = await db.collection('users').insertOne({ email, password: hashedPassword, name , username })
         return NextResponse.json({ user: { _id: newUser.insertedId, email } })
 
     } catch (error) {

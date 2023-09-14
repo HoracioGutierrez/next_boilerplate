@@ -37,6 +37,28 @@ const authOptions: AuthOptions = {
     adapter: MongoDBAdapter(clientPromise) as Adapter,
     session: {
         strategy: 'jwt',
+    },
+    callbacks : {
+        async session({session}) {
+            
+            if(session && session.user && session.user.email) {
+                try {
+                    const user = await fetch(process.env.NEXTAUTH_URL as string + "/api/user?email=" + encodeURI(session.user.email))
+                    const userJson = await user.json()
+                    if (userJson.error) return session
+                    
+                    for (const prop in userJson) {
+                        if (prop === '_id' || prop === "password") continue
+                        session.user[prop] = userJson[prop]
+                    }
+
+                } catch (error) {
+                    return session
+                }
+            }
+
+            return session
+        }
     }
 }
 

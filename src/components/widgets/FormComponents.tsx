@@ -12,20 +12,23 @@ type FormControlProps = {
     id?: string,
     register?: any,
     error?: any,
-    type ?: string
+    type?: string,
+    disabled?: boolean
 }
 
 type InputProps = {
     className?: string,
     id?: string,
     register?: any,
-    type ?: string
+    type?: string,
+    disabled?: boolean
 }
 
 type FormProps = {
     children: any,
     onSubmit: any,
-    sendText?: string | React.ReactNode
+    sendText?: string | React.ReactNode,
+    disabled?: boolean
 }
 
 
@@ -38,29 +41,30 @@ export const Label = ({ htmlFor = "test", text = "Test", className }: LabelProps
 }
 
 
-export const Input = ({ className , id , register , type = "text" }: InputProps) => {
+export const Input = ({ className, id, register, type = "text", disabled = false }: InputProps) => {
     return (
-        <input type={type} className={cn("block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer", className)} id={id} name={id} placeholder=" " {...register(id)}/>
+        <input disabled={disabled} type={type} className={cn("block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer", className , disabled && "text-gray-400!")} id={id} name={id} placeholder=" " {...register(id)} />
     )
 }
 
 
-export const FormControl = ({ label , id = "test" , register , error , type}: FormControlProps) => {
+export const FormControl = ({ label, id = "test", register, error, type, disabled = false }: FormControlProps) => {
     return (
         <div className="relative z-0">
-            <Input id={id} register={register} type={type}/>
+            <Input id={id} register={register} type={type} disabled={disabled} />
             <Label htmlFor={id} text={label} />
             {error && <span className="text-red-500">{error}</span>}
         </div>
     )
 }
 
-export const Form = ({ children , onSubmit , sendText = "send" }: FormProps) => {
+export const Form = ({ children, onSubmit, sendText = "send", disabled = false }: FormProps) => {
+    console.log(disabled)
     return (
         <form className="space-y-6 mt-8" onSubmit={onSubmit}>
             {children}
             <div>
-                <Button>{sendText}</Button>
+                <Button disabled={disabled}>{sendText}</Button>
             </div>
         </form>
     )

@@ -60,7 +60,7 @@ export default function LoginPage() {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         {errors.root && <span className="text-red-500 ">{errors.root.message}</span>}
         <Form
-          sendText={isPending ? <div className="i-svg-spinners:180-ring-with-bg" /> : 'Sign up'}
+          sendText={isPending ? <div className="i-svg-spinners:180-ring-with-bg" /> : 'Sign in'}
           onSubmit={handleSubmit(onSubmit)}
         >
           <FormControl label="email" id="email" register={register} error={errors.email?.message} type="email" />
