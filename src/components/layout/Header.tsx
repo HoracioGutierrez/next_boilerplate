@@ -17,7 +17,7 @@ export default async function Header() {
                     <h1>NextJS Bootstrap</h1>
                 </Link>
             </div>
-            <nav className="hidden" md="flex gap-4" relative z-1>
+            <nav className="hidden" md="flex! gap-4" relative z-1>
                 {!session && (
                     <>
                         <Link href="/login">login</Link>

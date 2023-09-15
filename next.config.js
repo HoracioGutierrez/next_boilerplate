@@ -15,6 +15,9 @@ const nextConfig = {
             },
             {
                 hostname: "api.dicebear.com",
+            },
+            {
+                hostname : "utfs.io"
             }
         ],
         dangerouslyAllowSVG: true,

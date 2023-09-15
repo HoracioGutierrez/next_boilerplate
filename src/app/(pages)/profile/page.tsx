@@ -1,4 +1,3 @@
-/* "use client" */
 import authOptions from "@/auth/options"
 import { getServerSession } from "next-auth"
 import ProfileForm from "./ProfileForm"

@@ -43,7 +43,7 @@ export async function PUT(request: Request) {
 
     const client = await clientPromise;
     const db = client.db();
-    const { email, password, name, username } = await request.json()
+    const { email, password, name, username , image } = await request.json()
 
     const validationResult = await profileFormSchema.safeParseAsync({ email, password, name, username })
 
@@ -65,7 +65,7 @@ export async function PUT(request: Request) {
             hashedPassword = await hash(password, 12)
         }
         
-        const newUser = await db.collection('users').findOneAndUpdate({ email }, { $set: { name, username, email, password: hashedPassword } }, { returnDocument: 'after' })
+        const newUser = await db.collection('users').findOneAndUpdate({ email }, { $set: { name, username, email, password: hashedPassword , image } }, { returnDocument: 'after' })
         return NextResponse.json({ success: true, newUser : newUser.value }, { status: 200 })
 
     } catch (error) {
