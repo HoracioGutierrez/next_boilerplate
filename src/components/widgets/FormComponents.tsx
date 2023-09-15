@@ -59,12 +59,11 @@ export const FormControl = ({ label, id = "test", register, error, type, disable
 }
 
 export const Form = ({ children, onSubmit, sendText = "send", disabled = false }: FormProps) => {
-    console.log(disabled)
     return (
         <form className="space-y-6 mt-8" onSubmit={onSubmit}>
             {children}
             <div>
-                <Button disabled={disabled}>{sendText}</Button>
+                <Button disabled={disabled} onClick={onSubmit}>{sendText}</Button>
             </div>
         </form>
     )
