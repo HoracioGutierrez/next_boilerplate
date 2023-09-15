@@ -30,7 +30,7 @@ export default function ProfileForm({ user }: Props) {
     }
 
     const onSubmit = async (data: profileFormType) => {
-        console.log(data)
+        console.log(data)   
         setError("root", { message: "" })
     }
 

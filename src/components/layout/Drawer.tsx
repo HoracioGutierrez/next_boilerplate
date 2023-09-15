@@ -28,7 +28,7 @@ export default function Drawer() {
                             <VaulDrawer.Title className="font-medium mb-4 text-black">
                                 NextJS Bootstrap
                             </VaulDrawer.Title>
-                            <nav sm="flex gap-4 flex-col text-gray-500" relative z-1>
+                            <nav className="flex gap-4 flex-col text-gray-500" relative z-1>
                                 {!session && (
                                     <>
                                         <Link href="/login">login</Link>
