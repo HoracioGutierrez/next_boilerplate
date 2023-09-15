@@ -63,7 +63,7 @@ export default function ProfileForm({ user }: Props) {
     return (
         <div>
             {errors.root && <p className="text-sm text-red-500 text-center">{errors.root.message}</p>}
-            <Form onSubmit={handleSubmit(onSubmit)} sendText={isSubmitting ? <div className="i-svg-spinners:180-ring-with-bg" /> : 'Sign in'} disabled={disabled}>
+            <Form onSubmit={handleSubmit(onSubmit)} sendText={isSubmitting ? <div className="i-svg-spinners:180-ring-with-bg" /> : 'save'} disabled={disabled}>
                 <FormControl label="Name" id="name" register={register} error={errors.name?.message} disabled={disabled} />
                 <FormControl label="Username" id="username" register={register} error={errors.username?.message} disabled={disabled} />
                 <FormControl label="Email" id="email" register={register} error={errors.email?.message} disabled={disabled} />
