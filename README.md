@@ -50,4 +50,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## To Do
 
 - [ ] Add more OAuth providers
-- [ ] Add Profile Page with user info
+- [ ] Add Profile Page with user info : ALMOST FINISHED!!!
+- [ ] Modify the new Drawer Implementation

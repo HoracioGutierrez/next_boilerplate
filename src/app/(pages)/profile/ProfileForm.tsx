@@ -29,12 +29,15 @@ export default function ProfileForm({ user }: Props) {
         setDisabled(!disabled)
     }
 
-    console.log(disabled)
+    const onSubmit = async (data: profileFormType) => {
+        console.log(data)
+        setError("root", { message: "" })
+    }
 
 
     return (
         <div>
-            <Form onSubmit={handleSubmit((data) => console.log(data))} sendText="save" disabled={disabled}>
+            <Form onSubmit={handleSubmit(onSubmit)} sendText="save" disabled={disabled}>
                 <FormControl label="Name" id="name" register={register} error={errors.name?.message} disabled={disabled} />
                 <FormControl label="Username" id="username" register={register} error={errors.username?.message} disabled={disabled} />
                 <FormControl label="Email" id="email" register={register} error={errors.email?.message} disabled={disabled} />
