@@ -4,6 +4,19 @@ This is a [Next.js](https://nextjs.org/) boilerplate with [TypeScript](https://w
 
 ## Features
 
+With this boilerplate you can:
+    
+* Sign up and Sign in with Google
+* Sign up and Sign in with Email and Password
+* Change your profile picture using [UploadThing](https://uploadthing.com/) (a simple and free image hosting service)
+* Change your profile information
+* Secure pages/routes with a middleware
+* Add more pages and routes to fill with boilerplate with your own content!!!
+
+
+
+## Tech Stack
+
 - [x] Next.js
 - [x] TypeScript
 - [x] ESLint
@@ -17,6 +30,7 @@ This is a [Next.js](https://nextjs.org/) boilerplate with [TypeScript](https://w
 - [x] Google OAuth
 - [x] Tailwind Merge
 - [x] clsx (for conditional classes)
+- [x] UploadThing!!!
 
 ## Getting Started
 
@@ -50,4 +64,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## To Do
 
 - [ ] Add more OAuth providers
-- [ ] Add Profile Page with user info : ALMOST FINISHED!!!
