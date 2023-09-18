@@ -13,38 +13,32 @@ import { Form, FormControl } from "@/components/widgets/FormComponents";
 
 export default function LoginPage() {
 
+  const router = useRouter()
+  const [isPending, setIsPending] = useState(false)
   const { register, handleSubmit: handleSubmit, formState: { errors }, setError } = useForm<loginFormType>({
     resolver: zodResolver(loginFormSchema)
   })
-  const [isPending, setIsPending] = useState(false)
-
-  const router = useRouter()
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
 
     setError("root", { message: "" })
     setIsPending(true)
 
-    const email = data.email
-    const password = data.password
-
-    signIn("credentials", { email, password, callbackUrl: "/" })
+    signIn("credentials", { email: data.email, password: data.password, callbackUrl: "/" })
       .then((response) => {
         if (response && response.error) {
           setError("root", { message: "There was an error signing in. Please check the details and try again." })
         }
 
         if (response && response.url) {
+          toast.success("Signed in successfully! Redirecting...")
           router.push(response.url)
         }
-
-        setIsPending(false)
-
-        toast.success("Signed in successfully! Redirecting...")
-
       })
       .catch((error) => {
         setError("root", { message: "There was an error signing in. Please check the details and try again." })
+      })
+      .finally(() => {
         setIsPending(false)
       })
   }

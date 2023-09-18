@@ -6,22 +6,22 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
-import "@uploadthing/react/styles.css";
 import { UploadButton } from "@/components/widgets/uploadthing"
 import Image from "next/image"
+import { handleUpdateData, handleUploadAvatar } from "@/utils/actions"
+import "@uploadthing/react/styles.css";
 
-type Props = {
+type ProfileFormProps = {
     user: any
 }
 
-export default function ProfileForm({ user }: Props) {
+export default function ProfileForm({ user }: ProfileFormProps) {
 
 
+    const [disabled, setDisabled] = useState(true)
     const { register, handleSubmit: handleSubmit, formState: { errors, isSubmitting }, setError, setValue, getValues } = useForm<profileFormType>({
         resolver: zodResolver(profileFormSchema)
     })
-
-    const [disabled, setDisabled] = useState(true)
 
     useEffect(() => {
         setValue("name", user.name)
@@ -34,58 +34,23 @@ export default function ProfileForm({ user }: Props) {
     }
 
     const onSubmit = async (data: profileFormType) => {
-
         setError("root", { message: "" })
-
-        try {
-
-            const res = await fetch("/api/user", {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ ...data })
-            })
-
-            if (res.status !== 200) return setError("root", { message: "Something went wrong!" })
-
-            const { newUser } = await res.json()
-
-            setValue("name", newUser.name)
-            setValue("username", newUser.username)
-            setValue("email", newUser.email)
-
-            toast.success("Profile updated successfully!")
-            toggleDisabled()
-
-        } catch (error) {
-            setError("root", { message: "Something went wrong!" })
-        }
+        const newUserResponse = await handleUpdateData(data)
+        if (newUserResponse.error) return setError("root", { message: newUserResponse.error })
+        const { newUser } = newUserResponse
+        setValue("name", newUser.name)
+        setValue("username", newUser.username)
+        setValue("email", newUser.email)
+        toast.success("Profile updated successfully!")
+        toggleDisabled()
     }
 
     const handleUpload = async (file: any) => {
-        const data = { ...getValues(), image: "" }
-        data.image = file[0].fileUrl
-        try {
-            const res = await fetch("/api/user", {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ ...data })
-            })
-
-            if (res.status !== 200) return setError("root", { message: "Something went wrong!" })
-
-            const { newUser } = await res.json()
-            console.log(newUser)
-
-            toast.success("Profile updated successfully!")
-            toggleDisabled()
-
-        } catch (error) {
-            setError("root", { message: "Something went wrong!" })
-        }
+        const data = getValues()
+        const newUserResponse = await handleUploadAvatar(file, data)
+        if (newUserResponse.error) return setError("root", { message: newUserResponse.error })
+        toast.success("Profile updated successfully!")
+        toggleDisabled()
     }
 
     return (

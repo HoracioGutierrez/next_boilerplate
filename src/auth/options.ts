@@ -18,7 +18,7 @@ const authOptions: AuthOptions = {
                 password: { label: "Password", type: "password" }
             },
             async authorize(credentials) {
-
+                console.log(credentials)
                 if (credentials && credentials.email) {
                     try {
                         const user = await fetch(process.env.NEXTAUTH_URL as string + "/api/user?email=" + encodeURI(credentials.email))

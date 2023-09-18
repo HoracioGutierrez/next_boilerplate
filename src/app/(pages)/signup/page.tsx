@@ -1,53 +1,50 @@
 "use client"
 import GoogleButton from "@/components/widgets/GoogleButton";
-import { handleSignupForm } from "@/utils/serverActions";
 import Link from "next/link";
-import { useTransition } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signupFormSchema, signupFormType } from "@/utils/yupSchemas";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "sonner"
 import { Form, FormControl } from "@/components/widgets/FormComponents";
+import { handleSignupFormValidation } from "@/utils/actions";
 
 export default function SignUpPage() {
 
-  const [isPending, startTransition] = useTransition()
+  const [isPending, setIsPending] = useState(false)
   const router = useRouter()
   const { register, handleSubmit, formState: { errors }, setError } = useForm<signupFormType>({
     resolver: zodResolver(signupFormSchema)
   })
 
-
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+
     setError("root", { message: "" })
-    startTransition(async () => {
-      try {
+    setIsPending(true)
 
-        const { name, username, email, password, repassword } = data
+    const { name, username, email, password, repassword } = data
 
-        const res = await handleSignupForm({
-          name,
-          username,
-          email,
-          password,
-          repassword
-        })
-
+    handleSignupFormValidation({
+      name,
+      username,
+      email,
+      password,
+      repassword
+    })
+      .then((res) => {
         if (!res) return setError("root", { message: "Something went wrong!" })
-
-
         toast.success("Account created successfully!")
         setTimeout(() => {
           router.push("/login")
         }, 2000)
-
-      } catch (error) {
+      })
+      .catch((error) => {
         setError("root", { message: "Something went wrong!" })
-      }
-    })
-
-
+      })
+      .finally(() => {
+        setIsPending(false)
+      })
   }
 
   return (

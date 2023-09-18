@@ -13,6 +13,10 @@ With this boilerplate you can:
 * Secure pages/routes with a middleware
 * Add more pages and routes to fill with boilerplate with your own content!!!
 
+## Demo
+
+You can see a demo of this boilerplate [here](https://next-boilerplate-starter.vercel.app/).
+
 
 
 ## Tech Stack
